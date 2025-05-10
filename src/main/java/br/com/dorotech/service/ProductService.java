@@ -4,4 +4,5 @@ import br.com.dorotech.service.domain.ProductDomain;
 
 public interface ProductService {
     ProductDomain create(ProductDomain domain);
+    ProductDomain getByName(String name);
 }

@@ -3,6 +3,7 @@ package br.com.dorotech.controller.request;
 import br.com.dorotech.service.domain.ProductDomain;
 import lombok.Builder;
 import lombok.Data;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 
