@@ -7,7 +7,9 @@ import lombok.Builder;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+@AllArgsConstructor
 @Data
+@Builder
 public class ProductResponse {
     private Long id;
     private String name;
@@ -15,7 +17,7 @@ public class ProductResponse {
     private BigDecimal price;
     private Integer amount;
 
-    public ProductResponse toProductResponse(ProductDomain domain) {
+    public static ProductResponse toProductResponse(ProductDomain domain) {
         return ProductResponse.builder()
             .amount(domain.getAmount())
             .price(domain.getPrice())

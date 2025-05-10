@@ -16,11 +16,12 @@ import java.util.List;
 @Data
 public class DoroTechController {
     private final ProductService productService;
-    private List<ProductRequest> productRequestList  = new ArrayList<ProductRequest>();;
+    private List<ProductRequest> productRequestList = new ArrayList<ProductRequest>()
+    ;
 
     @PostMapping
-    public String create(@RequestBody  ProductRequest productRequest) {
-       this.productService.create(productRequest.createProductDomain());
+    public String create(@RequestBody ProductRequest productRequest) {
+        this.productService.create(productRequest.createProductDomain());
         return "product created with success";
     }
 
@@ -35,14 +36,14 @@ public class DoroTechController {
     }
 
     @GetMapping("/{id}")
-    public ProductResponse getProductById(@PathVariable Long id){
+    public ProductResponse getProductById(@PathVariable Long id) {
         return ProductResponse.builder().build()
-        .toProductResponse(this.productService.getProduct(id));
+                .toProductResponse(this.productService.getProduct(id));
     }
 
-    @GetMapping
+    @GetMapping(params = "nome")
     public ProductResponse getByName(@RequestParam("nome") String nome) {
-        var domain = productService.getByName(nome);
-        return ProductResponse.from(domain);
+        return ProductResponse.builder().build()
+                .toProductResponse(this.productService.getByName(nome));
     }
 }
