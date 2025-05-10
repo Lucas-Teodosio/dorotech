@@ -43,4 +43,14 @@ public class ProductServiceImpl implements ProductService {
        return this.productRepository.findAll().stream()
        .map(it -> ProductDomain.builder().build().toProductDomain(it)).toList();
     }
+
+    @Override
+    public void deleteById(Long id) {
+        var product = this.productRepository.findById(id);
+        if (product.isPresent()) {
+            this.productRepository.delete(product.get());
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found");
+        }
+    }
 }
