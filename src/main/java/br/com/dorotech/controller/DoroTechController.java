@@ -34,9 +34,10 @@ public class DoroTechController {
         return "delete product";
     }
 
-    @GetMapping("/id")
-    public String getProductById(){
-        return "get product by id";
+    @GetMapping("/{id}")
+    public ProductResponse getProductById(@PathVariable Long id){
+        return ProductResponse.builder().build()
+        .toProductResponse(this.productService.getProduct(id));
     }
 
     @GetMapping

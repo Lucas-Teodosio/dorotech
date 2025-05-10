@@ -1,25 +1,29 @@
 package br.com.dorotech.controller.response;
 
+import java.math.BigDecimal;
+
 import br.com.dorotech.service.domain.ProductDomain;
+import lombok.Builder;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import java.math.BigDecimal;
-
 @Data
-@AllArgsConstructor
 public class ProductResponse {
+    private Long id;
     private String name;
     private String description;
     private BigDecimal price;
     private Integer amount;
 
-    public static ProductResponse from(ProductDomain d) {
-        return new ProductResponse(
-                d.getName(),
-                d.getDescription(),
-                d.getPrice(),
-                d.getAmount()
-        );
+    public ProductResponse toProductResponse(ProductDomain domain) {
+        return ProductResponse.builder()
+            .amount(domain.getAmount())
+            .price(domain.getPrice())
+            .description(domain.getDescription())
+            .name(domain.getName())
+            .id(domain.getId())
+            .build();
     }
 }
+
+

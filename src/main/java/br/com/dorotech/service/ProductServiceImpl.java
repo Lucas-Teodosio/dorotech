@@ -23,6 +23,13 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
+    public ProductDomain getProduct(Long id) {
+       return ProductDomain.builder()
+       .build().toProductDomain(this.productRepository.findById(id).get());
+
+    }
+
+    @Override
     public ProductDomain getByName (String name) {
         var entity = productRepository
                 .findByName(name)

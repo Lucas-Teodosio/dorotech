@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 @Builder
 @Data
 public class ProductDomain {
+    private Long id;
     private String name;
     private String description;
     private BigDecimal price;
@@ -25,6 +26,7 @@ public class ProductDomain {
 
     public ProductDomain toProductDomain(ProductEntity entity){
         return ProductDomain.builder()
+            .id(entity.getId())
                 .price(entity.getPrice())
                 .amount(entity.getAmount())
                 .name(entity.getName())
