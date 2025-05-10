@@ -8,14 +8,14 @@ import java.math.BigDecimal;
 
 @Data
 @AllArgsConstructor
-public class ResponseProduct {
+public class ProductResponse {
     private String name;
     private String description;
     private BigDecimal price;
     private Integer amount;
 
-    public static ResponseProduct from(ProductDomain d) {
-        return new ResponseProduct(
+    public static ProductResponse from(ProductDomain d) {
+        return new ProductResponse(
                 d.getName(),
                 d.getDescription(),
                 d.getPrice(),

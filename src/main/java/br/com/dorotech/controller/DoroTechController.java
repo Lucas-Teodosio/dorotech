@@ -1,11 +1,10 @@
 package br.com.dorotech.controller;
 
 import br.com.dorotech.controller.request.ProductRequest;
-import br.com.dorotech.controller.response.ResponseProduct;
+import br.com.dorotech.controller.response.ProductResponse;
 import br.com.dorotech.service.ProductService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -41,8 +40,8 @@ public class DoroTechController {
     }
 
     @GetMapping
-    public ResponseProduct getByName(@RequestParam("nome") String nome) {
+    public ProductResponse getByName(@RequestParam("nome") String nome) {
         var domain = productService.getByName(nome);
-        return ResponseProduct.from(domain);
+        return ProductResponse.from(domain);
     }
 }
