@@ -1,8 +1,14 @@
 package br.com.dorotech.service;
 
+import br.com.dorotech.model.ProductEntity;
 import br.com.dorotech.repository.ProductRepository;
 import br.com.dorotech.service.domain.ProductDomain;
 import lombok.AllArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -30,5 +36,11 @@ public class ProductServiceImpl implements ProductService {
     public ProductDomain getByName(String name) {
         return ProductDomain.builder()
                 .build().toProductDomain(this.productRepository.findByName(name).get());
+    }
+
+    @Override
+    public List<ProductDomain> getProducts() {
+       return this.productRepository.findAll().stream()
+       .map(it -> ProductDomain.builder().build().toProductDomain(it)).toList();
     }
 }
